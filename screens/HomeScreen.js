@@ -1,7 +1,7 @@
 import React from 'react';
 import { StyleSheet, View, TextInput, TouchableOpacity, SafeAreaView,Image,Text,ScrollView } from 'react-native';
-
 import { Ionicons } from '@expo/vector-icons';
+
 
 export default function App({ navigation }) {
 
@@ -57,7 +57,7 @@ export default function App({ navigation }) {
 
         <ScrollView horizontal={true} showsHorizontalScrollIndicator={false} className="mt-4">
         
-        <TouchableOpacity style={styles.projectCard} onPress={() => { /* Handle press */ }}>
+        <TouchableOpacity style={styles.projectCard} onPress={() => navigation.navigate('Game')} accessibilityLabel="Game" >
           <Image
             source={require('../assets/game.png')} 
             style={styles.projectImage}
@@ -65,7 +65,7 @@ export default function App({ navigation }) {
       
         </TouchableOpacity>
         
-        <TouchableOpacity style={styles.projectCard} onPress={() => { /* Handle press */ }}>
+        <TouchableOpacity style={styles.projectCard} onPress={() => navigation.navigate('Furniture')} accessibilityLabel="Furniture" >
           <Image
             source={require('../assets/furnite.png')} 
             style={styles.projectImage}
@@ -82,7 +82,7 @@ export default function App({ navigation }) {
             </TouchableOpacity>
           </View>
    
-          <TouchableOpacity style={styles.taskCard} onPress={() => { /* Handle press */ }}>
+          <TouchableOpacity style={styles.taskCard}>
             <Image
               source={require('../assets/calendar.png')} 
               style={styles.taskImage}
@@ -114,7 +114,6 @@ export default function App({ navigation }) {
           <Ionicons name="person-outline" size={24} color="#333" />
         </TouchableOpacity>
       </View>
-
       </View>
     </SafeAreaView>
   );

@@ -3,19 +3,11 @@ import { StyleSheet, View, Text, TouchableOpacity, Image, ScrollView, SafeAreaVi
 import { Ionicons } from '@expo/vector-icons';
 
 export default function FurnitureScreen({ navigation }) {
-  const [checkedItems, setCheckedItems] = useState([false, false, false]);
-
-  const toggleCheck = (index) => {
-    const newCheckedItems = [...checkedItems];
-    newCheckedItems[index] = !newCheckedItems[index];
-    setCheckedItems(newCheckedItems);
-  };
 
   return (
     <SafeAreaView style={styles.safeArea}>
       <ScrollView contentContainerStyle={styles.scrollContent} showsVerticalScrollIndicator={false}>
         <View style={styles.container}>
-          {/* Header Section */}
           <View style={styles.header}>
             <TouchableOpacity onPress={() => navigation.goBack()} accessibilityLabel="Back">
               <Ionicons name="arrow-back-outline" size={24} color="#333" />
@@ -34,10 +26,8 @@ export default function FurnitureScreen({ navigation }) {
             </View>
           </View>
 
-          {/* Project Image */}
-          <Image source={require('../assets/furnite.png')} style={styles.projectImage} />
+          <Image source={require('../assets/game.png')} style={styles.projectImage} />
 
-          {/* Description */}
           <View style={styles.descriptionContainer}>
             <Text style={styles.descriptionTitle}>Description</Text>
             <Text style={styles.descriptionText}>
@@ -46,82 +36,87 @@ export default function FurnitureScreen({ navigation }) {
             </Text>
           </View>
 
-          {/* Team Section */}
-          <View style={styles.sectionContainer}>
-            <View style={styles.sectionRow}>
-              <Ionicons name="people-outline" size={24} color="#333" />
-              <Text style={styles.sectionLabel}>Team</Text>
-            </View>
-            <Image source={require('../assets/team.png')} style={styles.teamImage} />
-          </View>
-
-          {/* Leader Section */}
-          <View style={styles.sectionContainer}>
-            <View style={styles.sectionRow}>
-              <Ionicons name="person-circle-outline" size={24} color="#333" />
-              <Text style={styles.sectionLabel}>Leader</Text>
-            </View>
-            <View style={styles.leaderInfo}>
-              <Image source={require('../assets/rafi.png')} style={styles.leaderImage} />
-              <Text style={styles.leaderName}>Rafi Islam Apon (you)</Text>
-            </View>
-          </View>
-
-          {/* Status and Due Date */}
-          <View style={styles.statusDueDateContainer}>
-            {/* Status */}
-            <View style={styles.statusContainer}>
-              <Ionicons name="flag-outline" size={24} color="#ff69b4" />
-              <TouchableOpacity style={styles.statusButton}>
-                <Text style={styles.statusButtonText}>To Do</Text>
-              </TouchableOpacity>
-            </View>
-
-            {/* Due Date */}
-            <View style={styles.dueDateContainer}>
-              <Ionicons name="calendar-outline" size={24} color="#333" />
-              <Text style={styles.dueDateText}>Due Date: Dec 27, 2024</Text>
-            </View>
-          </View>
-
-          {/* Attachments */}
-          <View style={styles.attachmentsContainer}>
-            <Ionicons name="attach-outline" size={24} color="#333" />
-            <TouchableOpacity style={styles.attachmentItem} onPress={() => console.log("Attachment pressed")} accessibilityLabel="Attachment">
-              <Ionicons name="document-text-outline" size={20} color="#333" />
-              <Text style={styles.attachmentText}>References.pdf</Text>
-            </TouchableOpacity>
-            <TouchableOpacity style={styles.addAttachmentButton} onPress={() => console.log("Add Attachment pressed")} accessibilityLabel="Add Attachment">
-              <Ionicons name="add-circle-outline" size={24} color="#1e90ff" />
-              <Text style={styles.addAttachmentText}>Add</Text>
-            </TouchableOpacity>
-          </View>
-
-          {/* Custom Selection Button */}
-          <TouchableOpacity style={styles.customSelectionButton} accessibilityLabel="Custom Selection">
-            <Text style={styles.customSelectionText}>Custom Selection</Text>
-          </TouchableOpacity>
-
-          {/* Subtasks */}
-          <View style={styles.subtasksContainer}>
-            <Text style={styles.customSectionButtonText}>Sub Tasks (3)</Text>
-            {/* Existing Subtasks */}
-            {['Define Problem with Client', 'Create Wireframe and User Flow', 'Project Setup & Brief'].map((task, index) => (
-              <TouchableOpacity key={index} style={styles.subtaskItem} onPress={() => toggleCheck(index)}>
-                {checkedItems[index] ? (
-                  <Ionicons name="checkmark-circle-outline" size={20} color="green" />
-                ) : (
-                  <Ionicons name="checkmark-circle-outline" size={20} color="#ccc" />
-                )}
-                <Text style={[styles.subtaskText, { textDecorationLine: checkedItems[index] ? 'line-through' : 'none' }]}>{task}</Text>
-              </TouchableOpacity>
-            ))}
-            <TouchableOpacity style={styles.addSubtaskButton} accessibilityLabel="Subtasks">
-              <Ionicons name="add-outline" size={20} color="#fff" />
-              <Text style={styles.addSubtaskText}>Add New Subtask</Text>
-            </TouchableOpacity>
-          </View>
+          <View style={styles.row}>
+        <Ionicons name="people-outline" size={24} color="#333" />
+        <Text style={styles.label}>Team</Text>
+        <View style={styles.avatars}>
+          <Image  source={require('../assets/team.png')} className="w-[160px] h-[25px] ml-[60px]"/>
+          <Ionicons name="add-circle-outline" size={20} color="blue"  className="ml-[15px]"/>
+     
         </View>
+      </View>
+
+    
+      <View style={styles.row}>
+        <Ionicons name="person-outline" size={24} color="#333" />
+        <Text style={styles.label}>Leader</Text>
+        <Image style={styles.leaderAvatar} source={require('../assets/rafi.png')}  />
+        <Text style={styles.leaderName}>Rafi Islam Apon (you)</Text>
+      </View>
+
+     
+      <View style={styles.row}>
+        <Ionicons name="checkmark-circle-outline" size={24} color="#333" />
+        <Text style={styles.label}>Status</Text>
+        <TouchableOpacity style={styles.statusButton} className="bg-[#FF007F]">
+          <Text style={styles.statusText}>To Do</Text>
+        </TouchableOpacity>
+      </View>
+
+    
+      <View style={styles.row}>
+        <Ionicons name="calendar-outline" size={24} color="#333" />
+        <Text style={styles.label}>Due Date</Text>
+        <Text style={styles.dueDate}>Dec 27, 2024</Text>
+      </View>
+
+ 
+      <View style={styles.row}>
+        <Ionicons name="attach-outline" size={24} color="#333" />
+        <Text style={styles.label}>Attachment</Text>
+        <View style={styles.attachmentContainer}>
+          <Text style={styles.attachmentText}>References.pdf</Text>
+          <TouchableOpacity style={styles.addAttachmentButton}>
+            <Ionicons name="add-circle-outline" size={15} color="#fff" />
+            <Text style={styles.addAttachmentText} className="ml-[5px]">Add</Text>
+          </TouchableOpacity>
+        </View>
+      </View>
+
+
+      <TouchableOpacity style={styles.customSectionButton}>
+        <Text style={styles.customSectionText}>Add Custom Section</Text>
+      </TouchableOpacity>
+
+     
+      <Text style={styles.subtaskHeader}>Sub Task (3)</Text>
+      <View style={styles.subtasksContainer}>
+        <View style={styles.subtaskItem}>
+          <View style={styles.subtaskIndicatorCompleted} />
+          <Text style={styles.subtaskText}>Define Problem with Client</Text>
+          <Ionicons name="checkmark-circle" size={24} color="green" />
+        </View>
+        <View style={styles.subtaskItem}>
+          <View style={styles.subtaskIndicatorPending} />
+          <Text style={styles.subtaskText}>Create Wireframe and User Flow</Text>
+          <Ionicons name="ellipse-outline" size={24} color="#ccc" />
+        </View>
+        <View style={styles.subtaskItem}>
+          <View style={styles.subtaskIndicatorPending} />
+          <Text style={styles.subtaskText}>Project set up & Brief</Text>
+          <Ionicons name="ellipse-outline" size={24} color="#ccc" />
+        </View>
+      </View>
+
+   
+      <TouchableOpacity style={styles.addSubtaskButton}>
+        <Ionicons name="add-circle-outline" size={24} color="#fff" />
+        <Text style={styles.addSubtaskText}>Add New Sub Task</Text>
+      </TouchableOpacity>
+
+
+
+         </View>
       </ScrollView>
     </SafeAreaView>
   );
@@ -133,7 +128,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
   },
   scrollContent: {
-    paddingBottom: 80, // Ensure content is scrollable above potential bottom bar
+    paddingBottom: 80, 
   },
   container: {
     flex: 1,
@@ -141,17 +136,11 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
   },
   header: {
-    position: 'absolute', // Fix the header position
-    top: 0,
-    left: 0,
-    right: 0,
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
     marginTop: 30,
     marginBottom: 20,
-    zIndex: 1000,
-    backgroundColor: '#fff', // Ensure header has background color
   },
   headerTitle: {
     fontSize: 17,
@@ -191,133 +180,144 @@ const styles = StyleSheet.create({
   sectionContainer: {
     marginBottom: 20,
   },
-  sectionRow: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    marginBottom: 10,
-  },
   sectionLabel: {
     fontSize: 14,
     color: '#333',
     marginLeft: 10,
   },
-  teamImage: {
-    width: 40,
-    height: 40,
-    borderRadius: 20,
-    marginLeft: 34, // Align with the icon and label
-  },
-  leaderInfo: {
+  row: {
     flexDirection: 'row',
     alignItems: 'center',
-    marginLeft: 10,
-  },
-  leaderImage: {
-    width: 40,
-    height: 40,
-    borderRadius: 20,
-    marginRight: 10,
-  },
-  leaderName: {
-    fontSize: 14,
-    color: '#333',
-  },
-  statusDueDateContainer: {
     marginBottom: 20,
   },
-  statusContainer: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    marginBottom: 10,
-  },
-  statusButton: {
-    backgroundColor: '#ff69b4', // Pink color
-    paddingVertical: 6,
-    paddingHorizontal: 12,
-    borderRadius: 20,
+  label: {
     marginLeft: 10,
-  },
-  statusButtonText: {
-    color: '#fff',
     fontSize: 14,
     fontWeight: 'bold',
+    color: '#333',
   },
-  dueDateContainer: {
+  avatars: {
     flexDirection: 'row',
-    alignItems: 'center',
+    marginLeft: 10,
   },
-  dueDateText: {
+  avatar: {
+    width: 30,
+    height: 30,
+    borderRadius: 15,
+    marginRight: 5,
+  },
+  leaderAvatar: {
+    width: 40,
+    height: 40,
+    borderRadius: 20,
+    marginLeft: 60,
+  },
+  leaderName: {
+    marginLeft: 10,
     fontSize: 14,
     color: '#333',
-    marginLeft: 10,
   },
-  attachmentsContainer: {
+  statusButton: {
+    paddingVertical: 5,
+    paddingHorizontal: 15,
+    borderRadius: 20,
+    marginLeft: 70,
+  },
+  statusText: {
+    color: '#fff',
+    fontWeight: 'bold',
+    fontSize: 12,
+  },
+  dueDate: {
+    marginLeft: 60,
+    fontSize: 14,
+    color: '#333',
+  },
+  attachmentContainer: {
     flexDirection: 'row',
     alignItems: 'center',
-    marginBottom: 20,
-  },
-  attachmentItem: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    marginLeft: 10,
+    marginLeft: 40,
   },
   attachmentText: {
     fontSize: 14,
     color: '#333',
-    marginLeft: 5,
+    marginRight: 10,
   },
   addAttachmentButton: {
     flexDirection: 'row',
     alignItems: 'center',
-    marginLeft: 15,
+    backgroundColor: '#1e90ff',
+    paddingVertical: 5,
+    paddingHorizontal: 10,
+    borderRadius: 20,
   },
   addAttachmentText: {
+    color: '#fff',
+    fontSize: 12,
+  },
+  customSectionButton: {
+    backgroundColor: '#f2f2f2',
+    paddingVertical: 15,
+    borderRadius: 20,
+    alignItems: 'center',
+    marginBottom: 30,
+  },
+  customSectionText: {
+    color: 'blue',
     fontSize: 14,
-    color: '#1e90ff',
-    marginLeft: 5,
   },
-  customSelectionButton: {
-    backgroundColor: '#d0e8ff', // Light blue color
-    paddingVertical: 10,
-    paddingHorizontal: 15,
-    borderRadius: 5,
-    marginBottom: 10,
-  },
-  customSelectionText: {
+  subtaskHeader: {
     fontSize: 16,
-    color: '#333',
     fontWeight: 'bold',
-    textAlign: 'center',
+    color: '#333',
+    marginBottom: 15,
   },
   subtasksContainer: {
     marginBottom: 20,
   },
-  customSectionButtonText: {
-    fontSize: 16,
-    color: '#333',
-    fontWeight: 'bold',
-  },
   subtaskItem: {
     flexDirection: 'row',
     alignItems: 'center',
-    marginBottom: 5,
+    backgroundColor: '#f9f9f9',
+    paddingVertical: 10,
+    paddingHorizontal: 15,
+    borderRadius: 10,
+    marginBottom: 10,
+  },
+  subtaskIndicatorCompleted: {
+    width: 5,
+    height: 40,
+    backgroundColor: 'green',
+    borderRadius: 5,
+    marginRight: 10,
+  },
+  subtaskIndicatorPending: {
+    width: 5,
+    height: 40,
+    backgroundColor: '#ccc',
+    borderRadius: 5,
+    marginRight: 10,
   },
   subtaskText: {
     fontSize: 14,
     color: '#333',
-    marginLeft: 10,
+    flex: 1,
   },
   addSubtaskButton: {
-    backgroundColor: '#1e90ff', // Blue color
-    paddingVertical: 10,
-    paddingHorizontal: 15,
-    borderRadius: 5,
+    flexDirection: 'row',
     alignItems: 'center',
-    marginTop: 10,
+    backgroundColor: 'blue',
+    paddingVertical: 15,
+    borderRadius: 20,
+    justifyContent: 'center',
   },
   addSubtaskText: {
-    fontSize: 14,
     color: '#fff',
-    textAlign: 'center',
+    marginLeft: 10,
+    fontSize: 14,
+    fontWeight: 'bold',
   },
+ 
+
+
 });

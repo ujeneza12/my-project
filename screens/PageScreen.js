@@ -1,8 +1,5 @@
-// PagesScreen.js
-
 import React from 'react';
 import { StyleSheet, View, Text, TouchableOpacity, ScrollView } from 'react-native';
-import { Ionicons } from '@expo/vector-icons';
 
 export default function PagesScreen({ navigation }) {
   const pages = [

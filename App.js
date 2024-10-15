@@ -11,7 +11,6 @@ import GameScreen from "./screens/GameScreen";
 import FurniteScreen from "./screens/FurniteScreen";
 
 
-
 const Stack = createStackNavigator();
 
 const App = () => {
@@ -26,9 +25,6 @@ const App = () => {
         <Stack.Screen name="View"  component={ViewAllScreen}  options={{ headerShown: false }}  />
         <Stack.Screen name="Game"  component={GameScreen}  options={{ headerShown: false }}  />
         <Stack.Screen name="Furniture"  component={FurniteScreen}  options={{ headerShown: false }}  />
-
-
-
 
       </Stack.Navigator>
     </NavigationContainer>

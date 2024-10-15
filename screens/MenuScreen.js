@@ -128,21 +128,20 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#fff',
-    padding: 20, // Optional: Add padding if needed
+
   },
   header: {
     alignItems: 'center',
   },
   logo: {
-    width: '100%', // Make the logo fill the container's width
-    height: 100, // Adjust height as needed
-    resizeMode: 'contain',
+    width: '100%', 
+    height: 110,
     marginBottom: 20,
   },
   profileSection: {
     flexDirection: 'row',
     alignItems: 'center',
-    marginRight: 110, // Equivalent to className="mr-[110px]"
+    marginRight: 110, 
   },
   profileImage: {
     width: 60,
